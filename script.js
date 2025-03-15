@@ -30,7 +30,7 @@ function loadFontSettings() {
 // Add event listener for form submission
 document.getElementById("font-settings").addEventListener("submit", (event) => {
     event.preventDefault();
-    saveFontSettings();
+    fontSettings();
 });
 
 // Load font settings from cookies on page load
