@@ -1,14 +1,18 @@
 //your JS code here. If required.
-function fontSetting(){
-	const fontsize = document.getElementById("fontsize").value;
+function saveFontSettings() {
+    const fontsize = document.getElementById("fontsize").value;
     const fontcolor = document.getElementById("fontcolor").value;
 
-document.cookie = `fontsize=${fontsize}`;
-document.cookie = `fontcolor=${fontcolor}`;
+    // Set cookies for font size and color
+    document.cookie = `fontsize=${fontsize}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+    document.cookie = `fontcolor=${fontcolor}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
 
-document.documentElement.style.setProperty("--fontsize", `${fontsize}px`);
-document.documentElement.style.setProperty("--fontcolor", fontcolor);
+    // Update font size and color variables
+    document.documentElement.style.setProperty("--fontsize", `${fontsize}px`);
+    document.documentElement.style.setProperty("--fontcolor", fontcolor);
 }
+
+// Function to load font settings from cookies
 function loadFontSettings() {
     const fontsizeCookie = document.cookie.match(/fontsize=([^;]*)/);
     const fontcolorCookie = document.cookie.match(/fontcolor=([^;]*)/);
@@ -30,7 +34,7 @@ function loadFontSettings() {
 // Add event listener for form submission
 document.getElementById("font-settings").addEventListener("submit", (event) => {
     event.preventDefault();
-    fontSettings();
+    saveFontSettings();
 });
 
 // Load font settings from cookies on page load
